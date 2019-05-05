@@ -1,8 +1,8 @@
 /*
 * This is an implementation utilising a custom backtracking algorithm
+* First we determine if the graph has a Euler path, e.g. if it has a solution
 * If there is a way to traverse all "bridges" then the program returns a possible path
 * that does so. If not, then it prints an appropriate message.
-*
  */
 import java.util.Stack;
 import java.util.List;
