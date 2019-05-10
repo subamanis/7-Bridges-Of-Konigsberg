@@ -46,7 +46,7 @@ public class Main
                     Route candidateRoute = currentNode.getAvailableRoutes().get(0);
                     remainingRoutes.remove(candidateRoute);
                     addToSolution(candidateRoute, currentNode);
-                    currentNode = currentNode.crossBetweenNodes(candidateRoute, currentNode, nodes);
+                    currentNode = currentNode.crossBetweenNodes(candidateRoute, nodes);
                 } else {
                     try {
                         previousState();
