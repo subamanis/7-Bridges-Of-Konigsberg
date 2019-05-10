@@ -38,10 +38,10 @@ public class Node implements Cloneable
         this.availableRoutes = availableRoutes;
     }
 
-    public Node crossBetweenNodes(Route route, Node thisNode, List<Node> mainNodes)
+    public Node crossBetweenNodes(Route route, List<Node> mainNodes)
     {
-        thisNode.availableRoutes.remove(route);
-        Node otherNode = route.oppositeNode(thisNode);
+        this.availableRoutes.remove(route);
+        Node otherNode = route.oppositeNode(this);
         for(Node n : mainNodes){
             if(n.getName() == otherNode.getName()){
                 otherNode = n;
