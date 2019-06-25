@@ -48,11 +48,7 @@ public class Main
                     addToSolution(candidateRoute, currentNode);
                     currentNode = currentNode.crossBetweenNodes(candidateRoute, nodes);
                 } else {
-                    try {
-                        previousState();
-                    } catch (CloneNotSupportedException e) {
-                        e.printStackTrace();
-                    }
+                    previousState();
                 }
             } while (remainingRoutes.size() != 0);
 
@@ -60,28 +56,32 @@ public class Main
         }
     }
 
-    private void previousState() throws CloneNotSupportedException
+    private void previousState()
     {
         if(states.empty()) return;
 
-        solution.remove(solution.size()-1);
+        try {
+            solution.remove(solution.size() - 1);
 
-        State s = states.pop();
-        Node sNode = s.getCurrentNode();
-        currentNode = (Node) sNode.clone();
+            State s = states.pop();
+            Node sNode = s.getCurrentNode();
+            currentNode = (Node) sNode.clone();
 
-        this.remainingRoutes.clear();
-        this.nodes.clear();
-        for(Node n : s.getNodes()){
-            if(n != null){
-                this.nodes.add((Node) n.clone());
+            this.remainingRoutes.clear();
+            this.nodes.clear();
+            for (Node n : s.getNodes()) {
+                if (n != null) {
+                    this.nodes.add((Node) n.clone());
+                }
             }
-        }
-        for(Route r : s.getRoutes())
+            for (Route r : s.getRoutes()) {
+                if (r != null) {
+                    this.remainingRoutes.add((Route) r.clone());
+                }
+            }
+        }catch (CloneNotSupportedException e)
         {
-            if(r != null){
-                this.remainingRoutes.add((Route) r.clone());
-            }
+            e.printStackTrace();
         }
 
         for(Node n : this.nodes)
